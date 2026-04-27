@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brgy 188 Tala | Digital Transformation Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900" x-data="{ mobileMenu: false }">
+
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">188</div>
+                <span class="font-bold text-xl tracking-tight">TALA DIGITAL</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 font-medium text-sm text-slate-600">
+                <a href="#profile" class="hover:text-blue-700 transition">Barangay Profile</a>
+                <a href="#news" class="hover:text-blue-700 transition">News</a>
+                <a href="#services" class="hover:text-blue-700 transition">Digital Services</a>
+                <a href="#about" class="hover:text-blue-700 transition">Developer</a>
+            </div>
+            
+            <a href="#proposal" class="hidden md:block bg-blue-700 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-800 transition transform hover:scale-105">
+                I Am Ready
+            </a>
+
+            <button @click="mobileMenu = !mobileMenu" class="md:hidden text-slate-800">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor font-bold">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <section id="profile" class="pt-32 pb-20 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-5xl mx-auto text-center" x-intersect="$el.classList.add('visible')">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6">
+                Modernizing Service for <span class="text-blue-700">Barangay 188 Tala</span>
+            </h1>
+            <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">
+                A vision for a smarter, faster, and more transparent community. Moving beyond social media to a complete digital ecosystem.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <button class="bg-blue-700 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-blue-200 hover:bg-blue-800 transition">Explore the Vision</button>
+                <button class="bg-white border-2 border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition">View Profile</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="py-20 bg-white" x-data="{ active: 0, slides: ['Current Events', 'Health Advisories', 'Community Programs'] }">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-10 text-center text-slate-800">Community Updates</h2>
+            <div class="relative overflow-hidden rounded-3xl bg-slate-100 aspect-video md:aspect-[21/9]">
+                <template x-for="(slide, index) in slides">
+                    <div x-show="active === index" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform translate-x-full" x-transition:enter-end="opacity-100 transform translate-x-0" class="absolute inset-0 flex items-center justify-center bg-blue-900 text-white text-3xl font-bold">
+                        <span x-text="slide"></span>
+                        <p class="absolute bottom-10 text-sm font-normal opacity-80">Official Update from Brgy 188 Office</p>
+                    </div>
+                </template>
+                <button @click="active = (active > 0) ? active - 1 : slides.length - 1" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 p-2 rounded-full hover:bg-white/40">❮</button>
+                <button @click="active = (active < slides.length - 1) ? active + 1 : 0" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 p-2 rounded-full hover:bg-white/40">❯</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12">
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-blue-700">The Roots of Tala</h2>
+                <p class="text-slate-600 leading-relaxed">
+                    Rich in history and community spirit, Barangay 188 stands as a pillar of North Caloocan. Our goal is to preserve this heritage while embracing the tools of tomorrow.
+                </p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+                <h2 class="text-3xl font-bold mb-6">What I Offer</h2>
+                <ul class="space-y-4 text-slate-700">
+                    <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span> Automated Permit Systems</li>
+                    <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span> 24/7 Digital Information Desk</li>
+                    <li class="flex items-center"><span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span> Secure Resident Databases</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="proposal" class="py-24 bg-blue-700 text-white text-center px-4">
+        <h2 class="text-3xl md:text-5xl font-bold mb-8">Ready to make an impactful website for Barangay 188?</h2>
+        <button class="bg-white text-blue-700 px-10 py-4 rounded-full font-black text-lg hover:bg-blue-50 transition transform hover:scale-110 shadow-2xl">
+            LET'S START THE TRANSFORMATION
+        </button>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="p-6 border rounded-2xl hover:border-blue-500 transition-colors group">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center text-blue-700 group-hover:bg-blue-700 group-hover:text-white transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                </div>
+                <h3 class="font-bold text-xl mb-2">E-Forms</h3>
+                <p class="text-slate-500 text-sm text-balance">Digitalization of all Barangay forms and application processes.</p>
+            </div>
+            <div class="p-6 border rounded-2xl hover:border-blue-500 transition-colors group">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center text-blue-700 group-hover:bg-blue-700 group-hover:text-white transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                </div>
+                <h3 class="font-bold text-xl mb-2">Mobile Integration</h3>
+                <p class="text-slate-500 text-sm">Access services through a dedicated mobile application.</p>
+            </div>
+            <div class="p-6 border rounded-2xl hover:border-blue-500 transition-colors group">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center text-blue-700 group-hover:bg-blue-700 group-hover:text-white transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                </div>
+                <h3 class="font-bold text-xl mb-2">Maps API</h3>
+                <p class="text-slate-500 text-sm">Real-time mapping for emergencies and local tracking.</p>
+            </div>
+            <div class="p-6 border rounded-2xl hover:border-blue-500 transition-colors group">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg mb-4 flex items-center justify-center text-blue-700 group-hover:bg-blue-700 group-hover:text-white transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
+                </div>
+                <h3 class="font-bold text-xl mb-2">ID Maker</h3>
+                <p class="text-slate-500 text-sm">Automated generation of official Barangay identification cards.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-blue-400">Beyond the Website</h2>
+                <p class="text-slate-400">Total System Solutions for Organizations and Individuals</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-20">
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                    <div class="h-40 bg-slate-700 rounded-xl mb-4"></div>
+                    <h4 class="font-bold text-lg mb-2 text-blue-300">Digital Graphics</h4>
+                    <p class="text-sm text-slate-400">Branding and visual content that communicates effectively.</p>
+                </div>
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                    <div class="h-40 bg-slate-700 rounded-xl mb-4"></div>
+                    <h4 class="font-bold text-lg mb-2 text-blue-300">Workflow Automation</h4>
+                    <p class="text-sm text-slate-400">Connecting tools to save hours of manual data entry.</p>
+                </div>
+                <div class="bg-slate-800/50 p-6 rounded-2xl border border-slate-700">
+                    <div class="h-40 bg-slate-700 rounded-xl mb-4"></div>
+                    <h4 class="font-bold text-lg mb-2 text-blue-300">Social Media Growth</h4>
+                    <p class="text-sm text-slate-400">Targeted boosting and Meta analysis for real engagement.</p>
+                </div>
+            </div>
+
+            <div class="text-center border-t border-slate-800 pt-10">
+                <p class="text-2xl font-light italic text-slate-400">"I don't just create websites, I make the whole system."</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="w-48 h-48 bg-slate-200 rounded-full flex-shrink-0"></div>
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-2">Karl | IT Professional</h2>
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded text-xs font-bold uppercase tracking-wider">System Developer</span>
+                    <p class="mt-4 text-slate-600 leading-relaxed">
+                        With an **Honor Graduate Eligibility (P.D. 907)** and years of experience as a System Developer, I specialize in building high-performance, secure, and user-centric digital tools. My focus for Barangay 188 is reliability and efficiency.
+                    </p>
+                    <div class="mt-6 flex space-x-4">
+                        <span class="text-sm text-slate-500">📍 North Caloocan Based</span>
+                        <span class="text-sm text-slate-500">💻 Full-Stack Specialist</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center text-slate-400 text-sm border-t border-slate-100">
+        &copy; 2026 Karl | Proposed Digital Infrastructure for Brgy. 188 Tala
+    </footer>
+
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section, h1, h2, .grid > div').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
